@@ -9,7 +9,6 @@
   become: true
   tags:
     - smoketest  
-
   tasks:
 
     - name: Smoketest Postgres database
