@@ -1,4 +1,11 @@
 ---
+- name: Add appdb1 IP address to app servers /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*appdb1$'
+    line: "{{ groups.database_servers[0] }} appdb1"
+    state: present
+
 - name: Create flask user
   user:
     name: "{{ flask_user }}"
@@ -33,7 +40,7 @@
       pip:
         name: "{{ pip_dependencies }}"
         state: latest
-        executable: /usr/bin/pip
+        executable: /usr/bin/pip3
 
     - name: "Create virtualenv {{ virtualenv_name }} for Flask"
       pip:

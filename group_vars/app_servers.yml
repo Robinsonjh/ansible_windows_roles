@@ -15,11 +15,7 @@ app_yum_packages:
   - gcc
   - libtool
   - python3
-  - python2-pip
-  - postgresql-devel
-  - python-devel
 
 pip_dependencies:
   - virtualenv
   - psycopg2-binary
-  - psycopg2

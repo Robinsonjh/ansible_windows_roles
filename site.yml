@@ -1,4 +1,5 @@
 ---
+- import_playbook: memory.yml
 - import_playbook: provision_database_tier.yml
 - import_playbook: provision_app_tier.yml
 - import_playbook: provision_load_balancer_tier.yml
@@ -32,7 +33,7 @@
   tasks: 
     - name: Check webserver for correct response
       uri:
-        url: "http://frontend1/ping"
+        url: "http://{{ groups.app_servers[0] }}:8080/ping"
         return_content: yes
       until: '"alive" in result.content'
       retries: 10
